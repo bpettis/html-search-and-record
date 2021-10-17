@@ -1,8 +1,19 @@
 <html>
 <head>
 	<title>Chrome Practice Popup</title>
+	
+	<script type="text/javascript" src="popup.js"></script>
+	
+	<style type="text/css">
+		body {width: 250;}
+		img {width: 50%; margin: auto;}
+	</style>
 </head>
 <body>
-	<p>This is the popup</p>
+	<h1>reCAPTCHA detector</h1>
+	<img src="icon.png">
+	<p>This is the popup for the extension!</p>
+	<p>iframes on page: <span id="iframecount">0</span></p>
+	<p>reCAPTCHAs on page: <span id="captchacount">0</span></p>
 </body>
 </html>

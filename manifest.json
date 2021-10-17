@@ -1,14 +1,14 @@
 {
   "manifest_version": 2,
-"name": "Chrome Extension Practice",
-"description": "Testing Creating a Plugin",
+"name": "reCAPTCHA Detector",
+"description": "Detects whether there is a reCAPTCHA element on a webpage",
 "version": "1.0",
 "content_scripts":[
     {
       "matches":[
-        "http://benpettis.com/*",
-        "https://benpettis.com/*"
+		"*://*/*"
       ],
+      "run_at": "document_idle",
       "js": ["content.js"]
     }
   ],
