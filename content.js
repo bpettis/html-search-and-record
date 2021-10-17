@@ -11,18 +11,18 @@ var callback = function(mutationsList) {
 	iframecount = 0;
 	captchacounter = 0;
 	
-	console.log('Detected ' + iframes.length + ' iframe elements');
+	// console.log('Detected ' + iframes.length + ' iframe elements');
 	
 	
 
 	for (let i = 0; i < iframes.length; i++) {
-				console.log('iframe #' + i + ' title: ' + iframes[i].getAttribute('title'));
+				// console.log('iframe #' + i + ' title: ' + iframes[i].getAttribute('title'));
 				if (iframes[i].getAttribute('title') == 'reCAPTCHA' ){
 					captchacounter++;
 				}
 			}
 	iframecount = iframes.length;
-	console.log('Detected ' + captchacounter + ' reCAPTCHA elements');
+	// console.log('Detected ' + captchacounter + ' reCAPTCHA elements');
 };
 // Create an observer instance linked to the callback function
 var observer = new MutationObserver(callback);
