@@ -1,22 +1,42 @@
 // content.js
 
-var iframes = document.getElementsByTagName('iframe');
 
-console.log('Detected ' + iframes.length + ' iframe elements');
-
+var iframecount = 0
 var captchacounter = 0
 
-for (let i = 0; i < iframes.length; i++) {
-            console.log('iframe #' + i + ' title: ' + iframes[i].getAttribute('title'));
-            if (iframes[i].getAttribute('title') == 'reCAPTCHA' ){
-            	captchacounter++;
-            }
-        }
+// Callback function to execute when mutations are observed
+var callback = function(mutationsList) {
+	var iframes = document.getElementsByTagName('iframe');
+	
+	iframecount = 0;
+	captchacounter = 0;
+	
+	console.log('Detected ' + iframes.length + ' iframe elements');
+	
+	
 
-console.log('Detected ' + captchacounter + ' reCAPTCHA elements');
+	for (let i = 0; i < iframes.length; i++) {
+				console.log('iframe #' + i + ' title: ' + iframes[i].getAttribute('title'));
+				if (iframes[i].getAttribute('title') == 'reCAPTCHA' ){
+					captchacounter++;
+				}
+			}
+	iframecount = iframes.length;
+	console.log('Detected ' + captchacounter + ' reCAPTCHA elements');
+};
+// Create an observer instance linked to the callback function
+var observer = new MutationObserver(callback);
 
-// document.getElementById("iframecount").innerHTML = iframes.length;
-// document.getElementById("captchacount").innerHTML = captchacounter;
+// Start observing the target node for configured mutations
+var targetNode = document.documentElement || document.body;;
+observer.observe(targetNode, {
+  attributes: true,
+  characterData: true,
+  childList: true,
+  subtree: true
+});
+
+
 
 // Inform the background page that 
 // this tab should have a page-action.
@@ -33,7 +53,7 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
     // (For your specific requirements `document.querySelectorAll(...)`
     //  should be equivalent to jquery's `$(...)`.)
     var domInfo = {
-      iframes: iframes.length,
+      iframes: iframecount,
       captchas: captchacounter,
     };
 

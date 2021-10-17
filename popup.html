@@ -10,9 +10,10 @@
 	</style>
 </head>
 <body>
-	<h1>reCAPTCHA detector</h1>
+	<h1>reCAPTCHA archiving</h1>
 	<img src="icon.png">
-	<p>This is the popup for the extension!</p>
+	<p>As the page loads, this extension checks for any iframes with the title attribute of "reCAPTCHA" and counts them. For now, we just track the numbers, but in the future we will build functionality to save a record of this otherwise ephemeral part of web history! For more information, please visit <a href="https://benpettis.com">my website</a>.</p>
+	<h2>reCAPTCHA detection:</h2>
 	<p>iframes on page: <span id="iframecount">0</span></p>
 	<p>reCAPTCHAs on page: <span id="captchacount">0</span></p>
 </body>
