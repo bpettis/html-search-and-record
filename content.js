@@ -22,6 +22,10 @@ var callback = function(mutationsList) {
 				}
 			}
 	iframecount = iframes.length;
+	
+
+	
+	
 	// console.log('Detected ' + captchacounter + ' reCAPTCHA elements');
 };
 // Create an observer instance linked to the callback function
@@ -60,5 +64,19 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
     // Directly respond to the sender (popup), 
     // through the specified callback.
     response(domInfo);
-  }
+  };
+  
+  if ((msg.from === 'background') && (msg.subject === 'captchaCount')) {
+    // Collect the necessary data. 
+    // (For your specific requirements `document.querySelectorAll(...)`
+    //  should be equivalent to jquery's `$(...)`.)
+    var domInfo = {
+      iframes: iframecount,
+      captchas: captchacounter,
+    };
+
+    // Directly respond to the sender (popup), 
+    // through the specified callback.
+    response(domInfo);
+  };
 });
