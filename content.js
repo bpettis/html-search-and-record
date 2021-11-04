@@ -29,7 +29,7 @@ var callback = function(mutationsList) {
 	// Kludge solution to only display a alert but only one time
 	if (captchacounter > 0 && alertShown == false) {
 		alertShown = true;
-		var x = confirm('test alert');
+		var x = confirm('It looks like there is a reCAPTCHA on this page! \nWould you like to record? ');
 			
 		console.log(x);
 	}
