@@ -11,6 +11,16 @@ chrome.runtime.onMessage.addListener((msg, sender) => {
 const setBadgeCount = count => {
 	if (count.captchas > 0 ) {
 		chrome.browserAction.setBadgeBackgroundColor( {color: "red" });
+		
+		// Could use this to create a system notification, but it's clunky right now...
+		//chrome.notifications.create('test', {
+		//	type: 'basic',
+		//	iconUrl: 'icon.png',
+		//	title: 'reCAPTCHA Detector',
+		//	message: 'reCAPTCHA element detected on an open tab!',
+		//	priority: 2
+		//});
+		
 	} else {
 		chrome.browserAction.setBadgeBackgroundColor( {color: "gray"} );
 		chrome.browserAction.setBadgeText( {text: ''} );
