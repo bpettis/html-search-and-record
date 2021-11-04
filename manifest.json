@@ -23,6 +23,7 @@
     "activeTab",
     "storage",
     "notifications",
+    "webNavigation",
     "https://ajax.googleapis.com/"
   ]
 }

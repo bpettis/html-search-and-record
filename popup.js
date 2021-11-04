@@ -4,6 +4,9 @@
 // document.getElementById("captchacount").innerHTML = captchacounter;
 
 // Update the relevant fields with the new data.
+
+var info;
+
 const setDOMInfo = info => {
   document.getElementById('iframecount').textContent = info.iframes;
   document.getElementById('captchacount').textContent = info.captchas;
