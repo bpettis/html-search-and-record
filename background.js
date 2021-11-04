@@ -9,8 +9,13 @@ chrome.runtime.onMessage.addListener((msg, sender) => {
 });
 
 const setBadgeCount = count => {
-	console.log('foo');
-	console.log(count);
+	if (count.captchas > 0 ) {
+		chrome.browserAction.setBadgeBackgroundColor( {color: "red" });
+	} else {
+		chrome.browserAction.setBadgeBackgroundColor( {color: "gray"} );
+		chrome.browserAction.setBadgeText( {text: ''} );
+	};
+	
 	chrome.browserAction.setBadgeText( {text: count.captchas.toString() } );
 };
 
