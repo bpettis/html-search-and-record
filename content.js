@@ -4,6 +4,8 @@
 var iframecount = 0
 var captchacounter = 0
 
+var alertShown = false;
+
 // Callback function to execute when mutations are observed
 var callback = function(mutationsList) {
 	var iframes = document.getElementsByTagName('iframe');
@@ -23,7 +25,14 @@ var callback = function(mutationsList) {
 			}
 	iframecount = iframes.length;
 	
-
+	
+	// Kludge solution to only display a alert but only one time
+	if (captchacounter > 0 && alertShown == false) {
+		alertShown = true;
+		var x = confirm('test alert');
+			
+		console.log(x);
+	}
 	
 	
 	// console.log('Detected ' + captchacounter + ' reCAPTCHA elements');
@@ -49,8 +58,9 @@ chrome.runtime.sendMessage({
   subject: 'showPageAction',
 });
 
-// Listen for messages from the popup.
-chrome.runtime.onMessage.addListener((msg, sender, response) => {
+// Listen for messages
+
+chrome.runtime.onMessage.addListener(function(msg, sender, response) {
   // First, validate the message's structure.
   if ((msg.from === 'popup') && (msg.subject === 'DOMInfo')) {
     // Collect the necessary data. 
@@ -67,16 +77,10 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
   };
   
   if ((msg.from === 'background') && (msg.subject === 'captchaCount')) {
-    // Collect the necessary data. 
-    // (For your specific requirements `document.querySelectorAll(...)`
-    //  should be equivalent to jquery's `$(...)`.)
-    var domInfo = {
-      iframes: iframecount,
-      captchas: captchacounter,
-    };
 
-    // Directly respond to the sender (popup), 
+    // Directly respond to the sender (background), 
     // through the specified callback.
-    response(domInfo);
+    response({count: captchacounter});
   };
 });
+
