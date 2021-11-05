@@ -24,6 +24,7 @@
     "storage",
     "notifications",
     "webNavigation",
+    "desktopCapture",
     "https://ajax.googleapis.com/"
   ]
 }

@@ -1,10 +1,15 @@
 // content.js
 
 
+
+//Initialize some variables:
 var iframecount = 0
 var captchacounter = 0
 
 var alertShown = false;
+
+
+var recording = false;
 
 // Callback function to execute when mutations are observed
 var callback = function(mutationsList) {
@@ -29,14 +34,13 @@ var callback = function(mutationsList) {
 	// Kludge solution to only display a alert but only one time
 	if (captchacounter > 0 && alertShown == false) {
 		alertShown = true;
-		var x = confirm('It looks like there is a reCAPTCHA on this page! \nWould you like to record? ');
-			
-		console.log(x);
-	}
+		alert('It looks like there is a reCAPTCHA on this page! \nOpen up the reCAPTCHA Detector extension for more information and to start a recording if you would like');
+	};
 	
 	
 	// console.log('Detected ' + captchacounter + ' reCAPTCHA elements');
 };
+
 // Create an observer instance linked to the callback function
 var observer = new MutationObserver(callback);
 
@@ -48,6 +52,20 @@ observer.observe(targetNode, {
   childList: true,
   subtree: true
 });
+
+
+//Handle the video:
+function toggleRecording() {
+	console.log('toggleRecording function ran');
+	
+	if (!recording) {
+		recording = true;
+	} else {
+		recording = false;
+	}
+	
+	return recording;
+}
 
 
 
@@ -69,6 +87,8 @@ chrome.runtime.onMessage.addListener(function(msg, sender, response) {
     var domInfo = {
       iframes: iframecount,
       captchas: captchacounter,
+      // While we're responding to this message, we need to make sure the popup script knows the current recording status so we stash that in the response object here too
+      status: recording,
     };
 
     // Directly respond to the sender (popup), 
@@ -82,5 +102,11 @@ chrome.runtime.onMessage.addListener(function(msg, sender, response) {
     // through the specified callback.
     response({count: captchacounter});
   };
+  
+  if ((msg.from === 'popup' && msg.subject === 'toggleRecording')){
+  	toggleRecording();
+  	
+  	response({status: recording});
+  }
 });
 
