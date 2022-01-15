@@ -94,3 +94,14 @@ document.addEventListener('DOMContentLoaded', function () {
         })();
     }
 });
+
+
+
+// Check if the go-to-options button is clicked, and if so open the extension options
+document.querySelector('#go-to-options').addEventListener('click', function() {
+  if (chrome.runtime.openOptionsPage) {
+    chrome.runtime.openOptionsPage();
+  } else {
+    window.open(chrome.runtime.getURL('options.html'));
+  }
+});

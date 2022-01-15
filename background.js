@@ -1,6 +1,7 @@
 // backround.js
 
-
+//in-page cache to store user options that we load from chrome.storage
+const options = {};
 
 chrome.runtime.onMessage.addListener((msg, sender) => {
   // First, validate the message's structure.
@@ -12,7 +13,12 @@ chrome.runtime.onMessage.addListener((msg, sender) => {
 
 const setBadgeCount = count => {
 	if (count.count > 0 ) {
-		chrome.browserAction.setBadgeBackgroundColor( {color: "red" });
+		// check the options for the selected color
+		chrome.storage.sync.get('options', (data) => {
+			Object.assign(options, data.options);
+		});
+	
+		chrome.browserAction.setBadgeBackgroundColor( {color: options.color } );
 		
 
 		

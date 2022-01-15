@@ -6,10 +6,16 @@
 var iframecount = 0
 var captchacounter = 0
 
+
+//In-page cache of the user options for us to load data from chrome.storage into:
+const options = {};
 var alertShown = false;
+var alertsEnabled = false;
+
 
 
 var recording = false;
+
 
 // Callback function to execute when mutations are observed
 var callback = function(mutationsList) {
@@ -31,10 +37,19 @@ var callback = function(mutationsList) {
 	iframecount = iframes.length;
 	
 	
-	// Kludge solution to only display a alert but only one time
-	if (captchacounter > 0 && alertShown == false) {
-		alertShown = true;
-		alert('It looks like there is a reCAPTCHA on this page! \nOpen up the reCAPTCHA Detector extension for more information and to start a recording if you would like');
+	// check if alerts are enabled or nah
+	chrome.storage.sync.get('options', (data) => {
+		Object.assign(options, data.options);
+		alertsEnabled = Boolean(options.alerts);
+	});
+	
+	
+	if (alertsEnabled == true) {
+		// Kludge solution to only display a alert but only one time
+		if (captchacounter > 0 && alertShown == false) {
+			alertShown = true;
+			alert('It looks like there is a reCAPTCHA on this page! \nOpen up the reCAPTCHA Detector extension for more information and to start a recording if you would like');
+		};
 	};
 	
 	
