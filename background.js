@@ -3,6 +3,9 @@
 //in-page cache to store user options that we load from chrome.storage
 const options = {};
 
+
+
+
 chrome.runtime.onMessage.addListener((msg, sender) => {
   // First, validate the message's structure.
   if ((msg.from === 'content') && (msg.subject === 'showPageAction')) {

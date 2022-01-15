@@ -22,9 +22,11 @@
 "options_ui": {
 	"page": "options.html",
 	"chrome_style": true
-},
+	},
+"content_security_policy": "script-src 'self'; object-src 'self'",
 "permissions": [
     "activeTab",
+    "tabs",
     "storage",
     "notifications",
     "webNavigation",

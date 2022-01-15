@@ -19,13 +19,7 @@ const setDOMInfo = info => {
   	document.getElementById('recordingOptions').style.visibility='visible';
   }
   
-  
-  // We need to reset the text inside the button whenever the DOM loads, aka whenever the popup is opened
-  if (info.status === true ){
-		document.querySelector('button').innerHTML = "Stop Recording";
-	} else {
-		document.querySelector('button').innerHTML = "Start Recording";
-	}
+
 };
 
 // Once the DOM is ready...
@@ -73,11 +67,10 @@ function doStuff(response) {
 	console.log('Doing stuff');
 	console.log(response);
 	
-	if (response.status === true ){
-		document.querySelector('button').innerHTML = "Stop Recording";
-	} else {
-		document.querySelector('button').innerHTML = "Start Recording";
-	}
+	
+	//open a window for stuff to happen in?
+	chrome.windows.create({url: "index.html", type: "popup", height: 500, width: 500});
+
 	
 }
 

@@ -12,18 +12,27 @@ chrome.storage.sync.get('options', (data) => {
   if (typeof options.color == "undefined") {
   	options.color = "red";
   }
+  if (typeof options.mime == "undefined") {
+  	options.mime = "video/mp4";
+  }
   
-  optionsForm.alerts.checked = Boolean(options.alerts);
-  optionsForm.color.value = String(options.color);
+  alertOptions.alerts.checked = Boolean(options.alerts);
+  alertOptions.color.value = String(options.color);
+  videoOptions.mime.value = String(options.mime);
 });
 
 // Immediately persist options changes
-optionsForm.alerts.addEventListener('change', (event) => {
+alertOptions.alerts.addEventListener('change', (event) => {
   options.alerts = event.target.checked;
   chrome.storage.sync.set({options});
 });
 
-optionsForm.color.addEventListener('change', (event) => {
+alertOptions.color.addEventListener('change', (event) => {
   options.color = event.target.value;
+  chrome.storage.sync.set({options});
+});
+
+videoOptions.mime.addEventListener('change', (event) => {
+  options.mime = event.target.value;
   chrome.storage.sync.set({options});
 });
