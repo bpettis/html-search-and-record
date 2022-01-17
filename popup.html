@@ -12,22 +12,24 @@
 <body>
 	<h1>reCAPTCHA archiving</h1>
 	<img src="icon.png">
-	<p>As the page loads, this extension checks for any iframes with the title attribute of "reCAPTCHA" and counts them. For now, we just track the numbers, but in the future we will build functionality to save a record of this otherwise ephemeral part of web history! For more information, please visit <a href="https://benpettis.com">my website</a>.</p>
+	<p>As the page loads, this extension checks the DOM and searches for the specified element and attribute. If it detects any, it prompts the user to record their interaction with the Web element.</p>
+
 	<h2>reCAPTCHA detection:</h2>
-	<p>iframes on page: <span id="iframecount">0</span></p>
-	<p>reCAPTCHAs on page: <span id="captchacount">0</span></p>
+	<p><span id="elementname">elements</span>s on page: <span id="elementcount">0</span></p>
+	<p><span id="attributeType">attribute</span>=<span id="attributeName">value</span> on page: <span id="attributecount">0</span></p>
 	
 	<div id="recordingOptions">
 		<h3>Recording</h3>
 		<button type="button">Recording Controls</button>
-		<p>This is a paragraph that briefly describes what will happen if you click record. It will explain that you'll be able to review the materials before choosing whether to upload. It will also have a link to have more information about what will happen with the data</p>
-		
-		<video autoplay width="100"></video>
+		<p>Click this button to set up and start the recording!</p>
+
 	</div>
 	
 	
 	<div>
+		<h3>Options</h3>
 		<button id="go-to-options">Extension Options</button>
+		<p>Specify the HTML element to search for and customize other settings</p>
 	</div>
 </body>
 

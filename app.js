@@ -196,9 +196,9 @@ document.querySelector('#stop-recording').addEventListener('click', function(eve
 	mediaRecorder.stop();
 	
 	
-     document.querySelector('#save-recording').disabled = false;
+    document.querySelector('#save-recording').disabled = false;
 	document.querySelector('#pause-recording').disabled = true;
-	document.querySelector('#start-recording').disabled = false;
+	//document.querySelector('#start-recording').disabled = false;
 	
 });
 
@@ -218,7 +218,10 @@ document.querySelector('#resume-recording').addEventListener('click', function(e
 
 document.querySelector('#save-recording').addEventListener('click', function(event)  {
 	this.disabled = true;
+	
 	mediaRecorder.save();
+	
+	
 
 	// alert('Drop WebM file on Chrome or Firefox. Both can play entire file. VLC player or other players may not work.');
 });

@@ -3,8 +3,8 @@
 
 
 //Initialize some variables:
-var iframecount = 0
-var captchacounter = 0
+var elementcount = 0
+var attributecounter = 0
 
 
 //In-page cache of the user options for us to load data from chrome.storage into:
@@ -21,8 +21,8 @@ var recording = false;
 var callback = function(mutationsList) {
 	var iframes = document.getElementsByTagName('iframe');
 	
-	iframecount = 0;
-	captchacounter = 0;
+	elementcount = 0;
+	attributecounter = 0;
 	
 	// console.log('Detected ' + iframes.length + ' iframe elements');
 	
@@ -31,10 +31,10 @@ var callback = function(mutationsList) {
 	for (let i = 0; i < iframes.length; i++) {
 				// console.log('iframe #' + i + ' title: ' + iframes[i].getAttribute('title'));
 				if (iframes[i].getAttribute('title') == 'reCAPTCHA' ){
-					captchacounter++;
+					attributecounter++;
 				}
 			}
-	iframecount = iframes.length;
+	elementcount = iframes.length;
 	
 	
 	// check if alerts are enabled or nah
@@ -46,14 +46,14 @@ var callback = function(mutationsList) {
 	
 	if (alertsEnabled == true) {
 		// Kludge solution to only display a alert but only one time
-		if (captchacounter > 0 && alertShown == false) {
+		if (attributecounter > 0 && alertShown == false) {
 			alertShown = true;
 			alert('It looks like there is a reCAPTCHA on this page! \nOpen up the reCAPTCHA Detector extension for more information and to start a recording if you would like');
 		};
 	};
 	
 	
-	// console.log('Detected ' + captchacounter + ' reCAPTCHA elements');
+	// console.log('Detected ' + attributecounter + ' reCAPTCHA elements');
 };
 
 // Create an observer instance linked to the callback function
@@ -100,8 +100,8 @@ chrome.runtime.onMessage.addListener(function(msg, sender, response) {
     // (For your specific requirements `document.querySelectorAll(...)`
     //  should be equivalent to jquery's `$(...)`.)
     var domInfo = {
-      iframes: iframecount,
-      captchas: captchacounter,
+      elements: elementcount,
+      attributes: attributecounter,
       // While we're responding to this message, we need to make sure the popup script knows the current recording status so we stash that in the response object here too
       status: recording,
     };
@@ -115,7 +115,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, response) {
 
     // Directly respond to the sender (background), 
     // through the specified callback.
-    response({count: captchacounter});
+    response({count: attributecounter});
   };
   
   if ((msg.from === 'popup' && msg.subject === 'toggleRecording')){

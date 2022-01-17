@@ -4,18 +4,37 @@
 // document.getElementById("captchacount").innerHTML = captchacounter;
 
 
+// In-page cache of the user's options
+const options = {};
+
+// Get the names of tags/attributes we're searching for
+chrome.storage.sync.get('options', (data) => {
+	Object.assign(options, data.options);
+	
+	if (typeof options.elementName == "undefined") {
+		options.elementName = "iframe";
+	  }
+	  if (typeof options.attributeType == "undefined") {
+		options.attributeType = "title";
+	  }
+	  if (typeof options.attributeName == "undefined") {
+		options.attributeName = "reCAPTCHA";
+	  }
+
+	document.getElementById('elementname').textContent = String(options.elementName);
+	document.getElementById('attributeType').textContent = String(options.attributeType);
+	document.getElementById('attributeName').textContent = String(options.attributeName);
+});
 
 
 // Update the relevant fields with the new data.
 const setDOMInfo = info => {
   document.getElementById('recordingOptions').style.visibility='hidden';
+    
+  document.getElementById('elementcount').textContent = info.elements;
+  document.getElementById('attributecount').textContent = info.attributes;
   
-
-  
-  document.getElementById('iframecount').textContent = info.iframes;
-  document.getElementById('captchacount').textContent = info.captchas;
-  
-  if (info.captchas > 0) {
+  if (info.attributes > 0) {
   	document.getElementById('recordingOptions').style.visibility='visible';
   }
   
@@ -69,7 +88,7 @@ function doStuff(response) {
 	
 	
 	//open a window for stuff to happen in?
-	chrome.windows.create({url: "index.html", type: "popup", height: 500, width: 500});
+	chrome.windows.create({url: "index.html", type: "popup", height: 700, width: 700});
 
 	
 }
