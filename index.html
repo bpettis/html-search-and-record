@@ -1,0 +1,48 @@
+<html>
+<head>
+<style>
+  body {
+    background: white;
+    display: -webkit-flex;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+    -webkit-flex-direction: column;
+  }
+  video {
+    width: 480px;
+    height: 360px;
+    border: 1px solid #e2e2e2;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  }
+</style>
+</head>
+<body>
+  <h3>reCAPTCHA Recording</h3>
+  <div>
+    <video id="video" autoplay></video>
+  </div>
+  <h4>First, select the window/tab to record</h4>
+  <p>
+    <button id="start">Select Source</button>
+    <button id="cancel">Close</button>
+  </p>
+  
+  <h4>Then, control the recording here</h4>
+  <p>
+  	<button id="start-recording" disabled>Start</button>
+	<button id="stop-recording" disabled>Stop</button>
+
+	<button id="pause-recording" disabled>Pause</button>
+	<button id="resume-recording" disabled>Resume</button>
+
+	<button id="save-recording" disabled>Save</button>
+  </p>
+  
+
+  
+  
+  <script src="MediaStreamRecorder.js"> </script>
+  <script src="app.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "manifest_version": 2,
+"name": "reCAPTCHA Detector",
+"description": "Detects whether there is a reCAPTCHA element on a webpage",
+"version": "1.0",
+"content_scripts":[
+    {
+      "matches":[
+		"*://*/*"
+      ],
+      "run_at": "document_idle",
+      "js": ["content.js"]
+    }
+  ],
+"browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+"background": {
+      "scripts": ["background.js"]
+    },
+"options_ui": {
+	"page": "options.html",
+	"chrome_style": true
+	},
+"content_security_policy": "script-src 'self'; object-src 'self'",
+"permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "notifications",
+    "webNavigation",
+    "desktopCapture",
+    "https://ajax.googleapis.com/"
+  ]
+}

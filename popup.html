@@ -1,0 +1,38 @@
+<html>
+<head>
+	<title>Chrome Practice Popup</title>
+	
+	
+	
+	<style type="text/css">
+		body {width: 250px;}
+		img {width: 50%; margin: auto;}
+	</style>
+</head>
+<body>
+	<h1>reCAPTCHA archiving</h1>
+	<img src="icon.png">
+	<p>As the page loads, this extension checks the DOM and searches for the specified element and attribute. If it detects any, it prompts the user to record their interaction with the Web element.</p>
+
+	<h2>reCAPTCHA detection:</h2>
+	<p><span id="elementname">elements</span>s on page: <span id="elementcount">0</span></p>
+	<p><span id="attributeType">attribute</span>=<span id="attributeName">value</span> on page: <span id="attributecount">0</span></p>
+	
+	<div id="recordingOptions">
+		<h3>Recording</h3>
+		<button type="button">Recording Controls</button>
+		<p>Click this button to set up and start the recording!</p>
+
+	</div>
+	
+	
+	<div>
+		<h3>Options</h3>
+		<button id="go-to-options">Extension Options</button>
+		<p>Specify the HTML element to search for and customize other settings</p>
+	</div>
+</body>
+
+<script type="text/javascript" src="popup.js"></script>
+
+</html>

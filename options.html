@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head><title>My Test Extension Options</title></head>
+<body>
+
+
+<h2>HTML Search Options</h2>
+
+<form id="htmlOptions">
+	<label>
+	HTML element to search for:<br />
+	<input type="text" id="elementName" value=""></input> (do not include brackets)
+	</label>
+	
+	<br />
+	
+	<label>
+	Attribute type to search for:
+		<select id="attributeType">
+			<option value="title">title</option>
+			<option value="class">class</option>
+			<option value="id">id</option>
+		</select>
+	</label>
+	
+	<br />
+	
+	<label>
+	Attribute value to search for: <br />
+	<input type="text" id="attributeName" value=""></input>
+	</label>
+
+</form>
+
+<h2>Alert Options</h2>
+
+<form id="alertOptions">
+	<label>
+		Badge Counter Color:
+		<select id="color">
+		 <option value="red">red</option>
+		 <option value="green">green</option>
+		 <option value="blue">blue</option>
+		 <option value="yellow">yellow</option>
+		</select>
+		
+	</label>
+
+	<br />
+
+	<label>
+	  <input type="checkbox" id="alerts">
+	  Enable Pop-up alerts
+	</label>
+</form>
+
+<h2>Video Options</h2>
+<form id="videoOptions">
+	<label>
+		Video Format:
+		<select id="mime">
+			<option value="video/mp4">MP4</option>
+			<option value="video/webm">webm</option>
+		</select>
+	</label>
+</form>
+
+<div>Changed options will be applied on newly loaded pages/tabs. Try refreshing if you don't immediately see your changes apply.</div>
+
+<script src="options.js"></script>
+</body>
+</html>
