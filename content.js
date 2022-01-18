@@ -9,6 +9,19 @@ var attributecounter = 0
 
 //In-page cache of the user options for us to load data from chrome.storage into:
 const options = {};
+
+
+var elementName
+var attributeType
+var attributeName
+
+chrome.storage.sync.get('options', (data) => {
+		Object.assign(options, data.options);
+		elementName = String(options.elementName);
+		attributeType = String(options.attributeType);
+		attributeName = String(options.attributeName);
+	});
+
 var alertShown = false;
 var alertsEnabled = false;
 
@@ -19,7 +32,7 @@ var recording = false;
 
 // Callback function to execute when mutations are observed
 var callback = function(mutationsList) {
-	var iframes = document.getElementsByTagName('iframe');
+	var iframes = document.getElementsByTagName(elementName);
 	
 	elementcount = 0;
 	attributecounter = 0;
@@ -27,10 +40,11 @@ var callback = function(mutationsList) {
 	// console.log('Detected ' + iframes.length + ' iframe elements');
 	
 	
+	
 
 	for (let i = 0; i < iframes.length; i++) {
 				// console.log('iframe #' + i + ' title: ' + iframes[i].getAttribute('title'));
-				if (iframes[i].getAttribute('title') == 'reCAPTCHA' ){
+				if (iframes[i].getAttribute(attributeType) == attributeName ){
 					attributecounter++;
 				}
 			}
