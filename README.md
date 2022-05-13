@@ -13,6 +13,12 @@ This iteration of the extension lets you customize the HTML element and attribut
 
 ## Intallation
 
+1. Head to the [Releases Page](https://github.com/bpettis/html-search-and-record/releases) and download the most recent release (or whichever version you'd like, really)
+2. This will download a .CRX file that contains all the necessary elements of the chrome extension in a neat little package
+3. Open the Chrome Extensions manager page
+4. Drag the .CRX file from your file browser onto the Chrome page
+5. Read through the requested permissions and click "Add" - you will see a warning that the extension does not come from the Chrome App Store.
+
 ## Usage
 
 I've tried to make the extension as user-friendly as possible. But also I'm not a trained expert in UI/UX so I know I probably could have done a better job at that... In any case, here's some hopefully useful information.
