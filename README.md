@@ -30,6 +30,7 @@ Type the name of the element that you wnat to search for, making sure to _not_ i
 
 Next, choose `title`, `class`, or `id` from the drop-down menu and type the value of the attribute that you want to search for. In my own use of this extension, I am trying to detect the Google reCAPTCHA element, so I have my search configured to detect the `iframe` elements that have an attribute `title` with the value `reCAPTCHA`
 
+
 #### Other Options
 
 In the options panel, you can also decide what color the counter in the extension icon should display in. The badge displays the number of detected elements, and changing the color can help this stand out - depending on what other extensions you have installed in Chrome.
@@ -44,7 +45,19 @@ Once you've set the options how you'd like, you can just close the options panel
 
 ### Recording
 
+1. Click on the extension icon to view the count of detected HTML elements. Click the "Recording Controls" button if you want to start recording
+![Screen Shot 2022-05-13 at 3 43 28 PM](https://user-images.githubusercontent.com/79371825/168386921-2c5ef2ab-d075-47d1-839b-098fb6c7f569.png)
+2. Click "Select Source" to give permission for the extension to view and record your screen. You can select a window, or just the specfic chrome Tab. You should see a preview of the selection in the pop-up window ![Screen Shot 2022-05-13 at 3 44 29 PM](https://user-images.githubusercontent.com/79371825/168386999-ed069663-ab67-4dd8-8e42-3f3b48c2faf7.png)
+3. Once you're ready, click "Start" - optionally, you can pause/resume the recording. This could be good if you want to hide some parts of the recording, such as typing in private information
+4. After you've finished whatever action you want to record, go back to the pop-up and click "Stop"
+5. Finally, click "save" to keep a copy of the video file. Otherwise, the video _*will be lost*_ if you close the window without saving.
+![Screen Shot 2022-05-13 at 3 44 51 PM](https://user-images.githubusercontent.com/79371825/168387308-d3bf99d2-a82f-4938-ab25-fd5f7db1bc9a.png)
+
+
+
 ## Support
+
+Unfortunately, I am not able to provide dedicated support or troubleshooting for the extension. I'm providing the code for you to use or remix for your own purposes, but this is not the same as a polished software release. If you do encounter problems, you are welcome to add an Issue to this GitHub repo, but I cannot guarantee if/when I will be able to directly respond.
 
 ## More Information
 
